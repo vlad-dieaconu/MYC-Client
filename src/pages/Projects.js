@@ -6,6 +6,7 @@ import { Button, Grid } from "@mui/material";
 import axios from "axios";
 
 import ProjectsCard from "../components/ProjectsCard";
+import NavbarAdmin from "../components/NavbarAdmin";
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -42,6 +43,7 @@ const Projects = () => {
 
   return (
     <div>
+      <NavbarAdmin></NavbarAdmin>
       <Container>
         <div className={classes.page}>
           <Grid container spacing={3}>

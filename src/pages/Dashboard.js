@@ -1,8 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AuthService from "../services/AuthService";
 import NavbarAdmin from "../components/NavbarAdmin";
+import {useLocation, useNavigate} from "react-router-dom";
 
 const Dashboard = () => {
+  const {state} = useLocation();
+  const navigate = useNavigate();
+  const [user, setUser] = useState({});
+  const [admin,setAdmin] = useState(false);
+  const [basicUser, setBasicUser] = useState(false);
   const [role, setRole] = useState(() => {
     if (AuthService.getCurrentUser()) {
       const currentUser = AuthService.getCurrentUser();
@@ -12,12 +18,30 @@ const Dashboard = () => {
     return "";
   });
 
-  if (role === "ROLE_ADMIN") {
-    return (
-      <div>
-        <NavbarAdmin></NavbarAdmin>
-      </div>
-    );
-  }
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem("USER");
+
+    if(state.role == "ROLE_ADMIN"){
+      setAdmin(true);
+    }
+    if(state.role == "ROLE_USER"){
+      setBasicUser(true);
+    }
+    console.log(role)
+    if (loggedInUser) {
+      const foundUser = JSON.parse(loggedInUser);
+      setUser(foundUser);
+    }else{
+      navigate("/home");
+    }
+
+  },[]);
+  
+  return(
+      <div>{
+        setAdmin ? <NavbarAdmin></NavbarAdmin> : <div> nu admin </div>
+      }</div>
+  )
+
 };
 export default Dashboard;

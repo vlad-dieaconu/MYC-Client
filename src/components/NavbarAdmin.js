@@ -1,6 +1,15 @@
 import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
+import AuthService from "../services/AuthService";
+import {Button} from "@mui/material";
 
 const Appbar = () => {
+
+
+    const logOut = () => {
+        AuthService.logout();
+
+    }
+
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Navbar.Brand href="home" style={{ marginLeft: 15 }}>
@@ -22,10 +31,12 @@ const Appbar = () => {
         </Nav>
         <Nav className="ms-auto" style={{ marginRight: 20 }}>
           <Nav.Link href="profile">Profile</Nav.Link>
+
           {/*<Navbar.Text style={{ color: "white" }}>*/}
 
           {/*    Logged in as {JSON.parse(localStorage.getItem("client") || "{}").nume}*/}
           {/*</Navbar.Text>*/}
+          <Button onClick={logOut}>LogOut</Button>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
