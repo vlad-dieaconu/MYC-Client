@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Social from "../res/social.svg";
+import Social from "../res/1.svg";
 import { Alert } from "reactstrap";
 import AuthService from "../services/AuthService";
 import { useNavigate } from "react-router-dom";

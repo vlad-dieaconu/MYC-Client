@@ -6,8 +6,7 @@ import Dashboard from "./pages/Dashboard";
 import Employees from "./pages/Employees";
 import WorkingDays from "./pages/WorkingDays";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-
-
+import Profile from "./pages/Profile";
 
 class App extends Component {
   render() {
@@ -20,6 +19,7 @@ class App extends Component {
           <Route path="/employees" element={<Employees />} />
           <Route path="/workingdays" element={<WorkingDays />} />
           <Route path="/projects" element={<Projects />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
       </Router>
     );
