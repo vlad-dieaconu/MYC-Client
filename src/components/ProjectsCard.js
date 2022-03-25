@@ -1,38 +1,83 @@
-import React from "react";
+import React, {useState} from "react";
 import {
-  Card,
-  CardHeader,
-  CardContent,
-  IconButton,
-  Typography,
+    Card,
+    CardHeader,
+    CardContent,
+    IconButton,
+    Typography,
+    TextField
 } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
+import SaveIcon from '@mui/icons-material/Save';
+import DeleteIcon from '@mui/icons-material/Delete';
+import axios from "axios";
 
-const ProjectsCard = ({ project }) => {
-  return (
-    <div>
-      {/*TODO Add a function that will render another page with every detail about a specific project.*/}
-      <Card
-        elevation={10}
-        onClick={() => console.log("Card with id", project.id)}
-      >
-        <CardHeader
-          action={
-            //TODO: ADD a function in Projects page and pass it in here as a props. function that will let Admin to edit the card
-            <IconButton onClick={() => console.log("click", project.id)}>
-              <EditIcon />
-            </IconButton>
-          }
-          title={project.nume}
-          subheader={project.locatie}
-        />
-        <CardContent>
-          <Typography variant="body2" color="textSecondary">
-            {project.descriere}
-          </Typography>
-        </CardContent>
-      </Card>
-    </div>
-  );
+
+const ProjectsCard = ({project}) => {
+
+    const [editable, setEditable] = useState(true);
+    const [projectId, setProjectId] = useState("");
+    const [descriere, setDescriere] = useState("");
+
+
+
+    const handleSave = () => {
+        axios.put("/api/admin/editProject?id="+projectId,{
+            descriere: descriere
+        }).then(res => console.log(res.data))
+
+        setEditable(true);
+        window.location.reload(false);
+
+    }
+
+    const handleDescriptionChange = (e) => {
+        setDescriere(e.target.value);
+    }
+
+    const handleDelete = () => {
+        axios.delete("/api/admin/deleteProject?id="+projectId)
+        setEditable(true);
+        window.location.reload(false);
+    }
+
+    return (
+        <div><Card
+            elevation={10}
+            onClick={() => setProjectId(project.id)}
+        >
+            <CardHeader
+                action={
+                    <IconButton onClick={() => setEditable(false)}>
+                        {editable ? <EditIcon/> : <></>}
+                    </IconButton>
+                }
+                title={project.nume}
+                subheader={project.locatie}
+            />
+            <CardContent>
+                <p>Numar resurse necesare: {project.numarResurseNecesare}</p>
+                <p>Numar resurse actuale: {project.numarActualResurse}</p>
+                {editable ? project.descriere :
+                    <div>
+                        <div>
+                            <TextField label="New description" onChange={handleDescriptionChange}>
+
+                            </TextField>
+                        </div>
+                        <div>
+                            <IconButton onClick={handleSave}>
+                                <SaveIcon/>
+                            </IconButton>
+                            <IconButton  onClick={handleDelete}>
+                                <DeleteIcon/>
+                            </IconButton>
+                        </div>
+                    </div>
+                }
+            </CardContent>
+        </Card>
+        </div>
+    );
 };
 export default ProjectsCard;

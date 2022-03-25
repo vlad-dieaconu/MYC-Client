@@ -1,12 +1,11 @@
-import React, {useEffect,useState} from "react"
+import React, {useEffect, useState} from "react"
 import {useLocation, useNavigate} from "react-router-dom";
 import {Container} from "@material-ui/core";
-import {makeStyles} from "@material-ui/core/styles";
-import {Grid} from "@mui/material";
+import {Alert, Avatar, Grid, Paper, TextField} from "@mui/material";
 import axios from "axios";
 import EmployeesTable from "../components/EmployeesTable";
 import NavbarAdmin from "../components/NavbarAdmin";
-
+import {makeStyles} from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => {
         return {
@@ -22,10 +21,14 @@ const useStyles = makeStyles((theme) => {
 
 const Employees = () => {
 
+
+
     const classes = useStyles();
     const navigate = useNavigate();
     const [employee, setEmployees] = useState([]);
     const [user, setUser] = useState({});
+
+
 
 
     useEffect(() => {
@@ -43,19 +46,20 @@ const Employees = () => {
     }, [])
 
 
+
     return (
         <div>
             <NavbarAdmin></NavbarAdmin>
-        <Container>
-            <div className={classes.page}>
-                <Grid container spacing={3}>
-                    <EmployeesTable employee={employee}></EmployeesTable>
-                </Grid>
-            </div>
-            <div>
-                {/*<Button onClick={handleFormCreation}>Create a new employee acccount</Button>*/}
-            </div>
-        </Container>
+            <Container style={{marginTop: 100}}>
+                    <div>
+                        <div className={classes.page}>
+                            <Grid container spacing={3}>
+                                <EmployeesTable employee={employee}></EmployeesTable>
+                            </Grid>
+                        </div>
+
+                    </div>
+            </Container>
         </div>
     )
 

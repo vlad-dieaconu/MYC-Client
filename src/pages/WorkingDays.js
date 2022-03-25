@@ -10,6 +10,10 @@ import WorkingDaysAccordion from "../components/WorkingDaysAccordion";
 import {makeStyles} from "@material-ui/core/styles";
 import {SingleDatePicker} from 'react-dates';
 import {Button} from "@mui/material";
+import InputLabel from "@mui/material/InputLabel";
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
 
 
 const useStyles = makeStyles((theme) => {
@@ -34,6 +38,10 @@ const WorkingDays = () => {
     const [date, setDate] = useState(null);
     const [focus, setFocus] = useState(false);
 
+
+    const [employeeId, setEmployeeId] = useState("");
+    const [employee, setEmployee] = useState([]);
+
     //loggedin user
     const [user, setUser] = useState({});
 
@@ -42,7 +50,8 @@ const WorkingDays = () => {
         axios.get("/api/admin/getWorkingDays")
             .then(res => setWorkingDays(res.data));
         console.log(date)
-
+        axios.get("/api/admin/getEmployees")
+            .then(res => setEmployee(res.data));
         const loggedInUser = localStorage.getItem("USER");
         if (loggedInUser) {
             const foundUser = JSON.parse(loggedInUser);
@@ -58,6 +67,11 @@ const WorkingDays = () => {
 
         axios.post("/api/admin/getWorkingDayByDate",{date: date.format("YYYY-MM-DD")
         }).then(res => setWorkingDays(res.data));
+    }
+
+    const handleChangeSelect = (event) => {
+        setEmployeeId(event.target.value);
+        axios.get("/api/admin/getWorkingDaysForOneEmployee?id="+employeeId).then(res => setWorkingDays(res.data))
     }
 
     return (
@@ -80,6 +94,24 @@ const WorkingDays = () => {
                         isOutsideRange={() => false}
                     />
                     <Button onClick={getWorkingDaysByDate}>Search</Button>
+                    <h4>Search by a specific employee</h4>
+                    <FormControl fullWidth style={{marginTop: "10px"}}>
+                        <InputLabel id="demo-simple-select-label">Employee</InputLabel>
+                        <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            value={employeeId}
+                            label="Employee"
+                            onChange={handleChangeSelect}
+                        >
+                            {employee.map((empl) => {
+                                return(
+                                    <MenuItem value={empl.id}>{empl.nume + " " + empl.prenume}</MenuItem>
+                                )
+                            })}
+                        </Select>
+                    </FormControl>
+
                 </div>
             </Container>
             <Container>
