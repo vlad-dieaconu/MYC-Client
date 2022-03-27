@@ -170,3 +170,9 @@ form.sign-up-form {
   margin-right: 40px;
   margin-left: 50px;
 }
+
+.image-auth {
+  width: 60%;
+  margin-top: 25px;
+  margin-left: 25px;
+}

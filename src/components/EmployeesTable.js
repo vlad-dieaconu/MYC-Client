@@ -72,7 +72,9 @@ const EmployeesTable = ({employee}) => {
 
 
     useEffect(() => {
-        axios.get("/api/admin/getProjects").then((res) => setProjects(res.data));
+        axios.get("/api/admin/getProjects").then((res) => {
+            setProjects(res.data)
+        });
         console.log(projects)
     }, []);
 
@@ -88,13 +90,11 @@ const EmployeesTable = ({employee}) => {
         rows.push(row);
     })
 
-    console.log(selectedRows);
 
     const handleChangeSelect = (event) => {
         setProjectId(event.target.value);
         setProjectSelected(true);
     };
-
 
 
     const handleSubmitAddNewEmployee = () => {
@@ -169,7 +169,7 @@ const EmployeesTable = ({employee}) => {
 
                 }
                 <div>
-                    {dialog ? <RegisterEmployeeDialog dialog={dialog}/> :<></>}
+                    {dialog ? <RegisterEmployeeDialog dialog={dialog}/> : <></>}
                 </div>
             </div>
         </div>

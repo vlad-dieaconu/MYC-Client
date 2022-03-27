@@ -7,6 +7,8 @@ import Employees from "./pages/Employees";
 import WorkingDays from "./pages/WorkingDays";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Profile from "./pages/Profile";
+import ForgotPassword from "./pages/ForgotPassword";
+import ChangePassword from "./pages/ChangePassword";
 
 class App extends Component {
   render() {
@@ -20,6 +22,8 @@ class App extends Component {
           <Route path="/workingdays" element={<WorkingDays />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/forgotPassword" element={<ForgotPassword/>}/>
+          <Route path="/changePassword/:token" element={<ChangePassword/>}/>
         </Routes>
       </Router>
     );
