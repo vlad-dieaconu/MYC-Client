@@ -5,6 +5,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
 import CheckIcon from '@mui/icons-material/Check';
+import NavbarEmployee from "../components/NavbarEmployee";
 
 const Profile = () => {
 
@@ -12,6 +13,8 @@ const Profile = () => {
     const navigate = useNavigate();
 
     const [user, setUser] = useState({});
+    // const [role, setRole] = useState(user.roles[0]);
+
     const [profileData, setProfileData] = useState([]);
     const [edit, setEdit] = useState(false);
 
@@ -39,7 +42,7 @@ const Profile = () => {
         console.log(profileData);
     }, [prenume])
 
-
+    console.log(user)
     const handleNumeChange = (e) => {
         setNume(e.target.value)
     }

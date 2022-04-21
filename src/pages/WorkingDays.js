@@ -5,23 +5,23 @@ import React, {useEffect, useState} from "react";
 import NavbarAdmin from "../components/NavbarAdmin";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
-import {Container} from "@material-ui/core";
+
 import WorkingDaysAccordion from "../components/WorkingDaysAccordion";
-import {makeStyles} from "@material-ui/core/styles";
+
 import {SingleDatePicker} from 'react-dates';
-import {Button} from "@mui/material";
+import {Button, Container} from "@mui/material";
 import InputLabel from "@mui/material/InputLabel";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
+import {makeStyles} from "@mui/styles";
 
 
 const useStyles = makeStyles((theme) => {
         return {
             page: {
                 width: '100%',
-                height: '100%',
-                padding: theme.spacing(3),
+                height: '100%'
             },
         };
     }

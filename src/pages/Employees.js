@@ -1,11 +1,10 @@
 import React, {useEffect, useState} from "react"
 import {useLocation, useNavigate} from "react-router-dom";
-import {Container} from "@material-ui/core";
-import {Alert, Avatar, Grid, Paper, TextField} from "@mui/material";
+import {Alert, Avatar, Container, Grid, Paper, TextField} from "@mui/material";
 import axios from "axios";
 import EmployeesTable from "../components/EmployeesTable";
 import NavbarAdmin from "../components/NavbarAdmin";
-import {makeStyles} from "@material-ui/core/styles";
+import { makeStyles } from '@mui/styles'
 
 const useStyles = makeStyles((theme) => {
         return {
@@ -13,7 +12,7 @@ const useStyles = makeStyles((theme) => {
 
                 width: '100%',
                 height: '100%',
-                padding: theme.spacing(3),
+
             },
         };
     }
