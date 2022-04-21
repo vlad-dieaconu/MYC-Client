@@ -1,8 +1,7 @@
 import React, {useState, useEffect} from "react";
 import {useNavigate} from "react-router-dom";
-import {Container} from "@material-ui/core";
-import {makeStyles} from "@material-ui/core/styles";
-import {Avatar, Button, Grid, Paper, TextField} from "@mui/material";
+
+import {Avatar, Button, Container, Grid, Paper, TextField} from "@mui/material";
 import axios from "axios";
 
 import AddBoxIcon from '@mui/icons-material/AddBox';
@@ -10,13 +9,13 @@ import AddBoxIcon from '@mui/icons-material/AddBox';
 
 import ProjectsCard from "../components/ProjectsCard";
 import NavbarAdmin from "../components/NavbarAdmin";
+import {makeStyles} from "@mui/styles";
 
 const useStyles = makeStyles((theme) => {
     return {
         page: {
             width: "100%",
             height: "100%",
-            padding: theme.spacing(3),
         },
     };
 });
