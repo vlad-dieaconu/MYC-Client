@@ -12,6 +12,7 @@ import ChangePassword from "./pages/ChangePassword";
 import WorkingDayEmployee from "./pages/WorkingDayEmployee";
 import ProjectEmployee from "./pages/ProjectEmployee";
 import LeaveRequestsPage from "./pages/LeaveRequestsPage";
+import AdminLeaveRequestPages from "./pages/AdminLeaveRequestPages";
 
 class App extends Component {
   render() {
@@ -27,6 +28,7 @@ class App extends Component {
           <Route path="/profile" element={<Profile />} />
           <Route path="/forgotPassword" element={<ForgotPassword/>}/>
           <Route path="/changePassword/:token" element={<ChangePassword/>}/>
+          <Route path="/adminleaverequests" element={<AdminLeaveRequestPages/>}/>
           {/**Employee**/}
           <Route path="/clockingWorkingDay" element={<WorkingDayEmployee/>}/>
           <Route path="/projectEmployee" element={<ProjectEmployee/>}/>

@@ -71,20 +71,30 @@ const ProjectEmployee = () => {
             {dataIsSet ?
                 <div>
                     <NavbarEmployee/>
-                    <Container>
-                        < Grid width={450} marginBottom={"30px"}>
-                            <Card elevation={10}>
-                                <CardHeader title={project.nume}
-                                            subheader={project.locatie}>
-                                </CardHeader>
-                                <CardContent>
-                                    {project.descriere}
-                                </CardContent>
-                            </Card>
-                        </Grid>
 
-                        <Paper style={{maxHeight: 350, overflow: 'auto'}}>
-                            <List>
+                    <Container>
+                        <div
+                            style={{
+                                position: 'absolute',
+                                top: '100px',
+                                left: '60px',
+                            }}
+                        >
+                            < Grid width={450} marginBottom={"30px"}>
+                                <Card elevation={10}>
+                                    <CardHeader title={project.nume}
+                                                subheader={project.locatie}>
+                                    </CardHeader>
+                                    <CardContent>
+                                        {project.descriere}
+                                    </CardContent>
+                                </Card>
+                            </Grid>
+                        </div>
+
+                        <Paper style={{maxHeight: 350, overflow: 'auto', marginLeft: '130px',
+                            marginTop: '50px', marginBottom: '30px'}}>
+                            <List style={{maxHeight: 350}}>
                                 <ListSubheader component="div" id="nested-list-subheader">
                                     Project Commits
                                 </ListSubheader>

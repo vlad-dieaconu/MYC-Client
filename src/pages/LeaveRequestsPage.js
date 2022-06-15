@@ -18,10 +18,10 @@ const LeaveRequestsPage = () => {
     const [freeDaysTaken, setFreeDaysTaken] = React.useState('');
 
 
-    useEffect( async() => {
-        
+    useEffect(async () => {
 
-            await axios.get('api/user/getLeavingPermissionRequests')
+
+        await axios.get('api/user/getLeavingPermissionRequests')
             .then(res => {
                 console.log("dd")
                 console.log(res.data)
@@ -42,23 +42,69 @@ const LeaveRequestsPage = () => {
     }, []);
 
 
-
     return (
         <div>
             <NavbarEmployee/>
-            <div>
-                <h4>Zile de concediu</h4>
-                <p>Luate {+" " + freeDaysTaken}</p>
-                <p>Ramase {+" " +freeDays}</p>
+            <div
+                style={{
+                    position: "absolute",
+                    top: "80px",
+                    right: "150px",
+                    backgroundColor: 'lightgrey'
+                }}
+            >
+                <h4
+                    style={{
+                        marginTop: '10px',
+                        marginLeft: '15px',
+                        marginRight: '15px',
+                    }}
+                >Vacation days</h4>
+                <p
+                    style={{
+                        marginTop: '2px',
+                        marginLeft: '15px'
+                    }}
+                >Taken: {+" " + freeDaysTaken}</p>
+                <p
+                    style={{
+                        marginTop: '2px',
+                        marginLeft: '15px'
+                    }}
+                >Left: {+" " + freeDays}</p>
             </div>
             <LeaveRequest/>
 
-            <div>
+            <h4
+                style={
+                    {
+                        marginLeft: '30px',
+                        marginRight: '1300px',
+                        marginTop: '30px',
+                        right: "100px"
+                    }
+                }
+            >
+                Requests seen by the administrator
+            </h4>
+
+            <div
+                style={
+                    {
+                        top: "15%",
+                        fontWeight: 'bold',
+                        marginLeft: '30px',
+                        marginRight: '1500px',
+                    }
+                }
+            >
                 {leavingRequests.map(request => {
                     return <LeaveRequestsList leaveRequest={request}/>
                 })}
             </div>
         </div>
     );
+
+
 };
 export default LeaveRequestsPage;

@@ -1,5 +1,5 @@
 import React from 'react'
-import {Stack, Switch} from "@mui/material";
+import {Button, Stack, Switch} from "@mui/material";
 import {DateRangePicker} from "react-dates";
 import axios from "axios";
 
@@ -55,15 +55,53 @@ const LeaveRequest = () => {
 
     return (
         <div>
-            <div>
+            <div
+                style={
+                    {
+                        marginLeft: '20px',
+                        fontWeight: 'bold',
+                        backgroundColor: 'lightGrey',
+                        position: "absolute",
+                        transform: "translate(-50%, -50%)",
+                        top: "10%",
+                        left: "50%"
+
+                    }
+                }
+            >
                 <h4>Request for vacation </h4>
-                {/*<p>Free days left: {userFreeDays}</p>*/}
+
             </div>
-            <Stack>
+            <div
+                style={
+                    {
+                        marginLeft: '20px',
+                        fontWeight: 'bold',
+                        position: "absolute",
+                        transform: "translate(-50%, -50%)",
+                        top: "15%",
+                        left: "50%"
+
+                    }
+                }
+            >
+                <p>Select the period you want </p>
+
+            </div>
+            <Stack
+                style={
+                    {
+
+                        position: "absolute",
+                        top: "30%",
+                        transform: "translate(-50%, -50%)",
+                        left: "50%"
+                    }
+                }
+            >
 
                 <DateRangePicker
                     startDate={startDate}
-
                     startDateId="start-date"
                     endDate={endDate}
                     endDateId="end-date"
@@ -77,7 +115,15 @@ const LeaveRequest = () => {
 
                 />
 
-                <div>
+                <div
+                    style={
+                        {
+                            fontWeight: 'bold',
+                            marginTop: '5px',
+                            marginLeft: '15px'
+                        }
+                    }
+                >
                     Vacation
                     <Switch
                         checked={vacationSwitch}
@@ -85,7 +131,15 @@ const LeaveRequest = () => {
                         inputProps={{'aria-label': 'controlled'}}
                     />
                 </div>
-                <div>
+                <div
+                    style={
+                        {
+                            marginTop: '5px',
+                            fontWeight: 'bold',
+                            marginLeft: '15px'
+                        }
+                    }
+                >
                     Medical reasons
                     <Switch
                         checked={medicalSwitch}
@@ -93,7 +147,15 @@ const LeaveRequest = () => {
                         inputProps={{'aria-label': 'controlled'}}
                     />
                 </div>
-                <div>
+                <div
+                    style={
+                        {
+                            fontWeight: 'bold',
+                            marginTop: '5px',
+                            marginLeft: '15px'
+                        }
+                    }
+                >
                     Family reasons
                     <Switch
                         checked={familySwitch}
@@ -102,7 +164,18 @@ const LeaveRequest = () => {
                     />
                 </div>
 
-                <button onClick={handleSubmitRequest}>Make the request</button>
+                <Button
+                    style={
+                        {
+                            marginTop: '10px',
+                            width: '100%',
+                            backgroundColor: 'green',
+                            color: 'black',
+                            fontWeight: 'bold'
+
+                        }
+                    }
+                    onClick={handleSubmitRequest}>Make the request</Button>
 
             </Stack>
         </div>

@@ -13,17 +13,26 @@ const LeaveRequestsList = ({leaveRequest}) => {
     //difference between startDate and endDate
     const diff = (new Date(leaveRequest.endDate) - new Date(leaveRequest.startDate)) / (1000 * 60 * 60 * 24);
 
+    console.log(leaveRequest)
 
     return (
+
+
+
         <div>
             {seenBySuperior ?
-                <List>
+                <List
+                    style={{marginTop: '5px', maxHeight: 150, overflow: 'auto', maxWidth: 700}}
+                >
                     <ListItem key={leaveRequest.id}>
                         <ListItemIcon>
-                            {approved ? <CheckBoxIcon/> : <DoDisturbIcon/>}
+                            {approved ? <CheckBoxIcon style={{color: 'green'}}/> : <DoDisturbIcon style={{color: 'red'}}/>}
                         </ListItemIcon>
-                        <ListItemText primary={leaveRequest.leaveType}
-                                      secondary={" "+diff + " days duration"}/>
+                        <ListItemText
+                            primary={leaveRequest.leaveType}
+                            secondary={leaveRequest.startDate.split('T')[0] + " - " + leaveRequest.endDate.split('T')[0] + " (" + diff + " days)"}
+                        />
+
                     </ListItem>
                 </List> :
                 <>

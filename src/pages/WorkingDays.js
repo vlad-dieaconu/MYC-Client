@@ -46,7 +46,6 @@ const WorkingDays = () => {
     const [user, setUser] = useState({});
 
     useEffect(() => {
-        //TODO make working days in backend to retrive name of the user
         axios.get("/api/admin/getWorkingDays")
             .then(res => setWorkingDays(res.data));
         console.log(date)
@@ -69,59 +68,63 @@ const WorkingDays = () => {
         }).then(res => setWorkingDays(res.data));
     }
 
-    const handleChangeSelect = (event) => {
-        setEmployeeId(event.target.value);
-        axios.get("/api/admin/getWorkingDaysForOneEmployee?id="+employeeId).then(res => setWorkingDays(res.data))
+    const handleChangeSelect = async (event) => {
+        event.preventDefault();
+        axios.get("/api/admin/getWorkingDaysForOneEmployee?id=" + event.target.value).then(res => setWorkingDays(res.data))
     }
 
     return (
         <div>
             <NavbarAdmin></NavbarAdmin>
-            <Container>
+
                 <div className={classes.page}>
+                    <div style={{position: 'absolute', top: '100px', left: '60px', width: '100%'}}>
                     <h4>
                         Select information only for a specific date
                     </h4>
 
                     <SingleDatePicker
-                        date={date} // momentPropTypes.momentObj or null
-                        onDateChange={(date) => setDate(date)} // PropTypes.func.isRequired
+                        date={date}
+                        onDateChange={(date) => setDate(date)}
                         focused={focus} // PropTypes.bool
-                        onFocusChange={({focused}) => setFocus(focused)} // PropTypes.func.isRequired
+                        onFocusChange={({focused}) => setFocus(focused)}
                         numberOfMonths={1}
                         displayFormat="DD-MM-YYYY"
                         showClearDate={true}
                         isOutsideRange={() => false}
                     />
-                    <Button onClick={getWorkingDaysByDate}>Search</Button>
-                    <h4>Search by a specific employee</h4>
-                    <FormControl fullWidth style={{marginTop: "10px"}}>
-                        <InputLabel id="demo-simple-select-label">Employee</InputLabel>
-                        <Select
-                            labelId="demo-simple-select-label"
-                            id="demo-simple-select"
-                            value={employeeId}
-                            label="Employee"
-                            onChange={handleChangeSelect}
-                        >
-                            {employee.map((empl) => {
-                                return(
-                                    <MenuItem value={empl.id}>{empl.nume + " " + empl.prenume}</MenuItem>
-                                )
-                            })}
-                        </Select>
-                    </FormControl>
+                        <div>
+                            <Button onClick={getWorkingDaysByDate}>Search</Button>
+                        </div>
 
+                        <div>
+                            <h4>Search by a specific employee</h4>
+                            <FormControl style={{marginTop: "10px", width: '10%'}}>
+                                <InputLabel id="demo-simple-select-label">Employee</InputLabel>
+                                <Select
+                                    labelId="demo-simple-select-label"
+                                    id="demo-simple-select"
+                                    value={employeeId}
+                                    label="Employee"
+                                    onChange={handleChangeSelect}
+                                >
+                                    {employee.map((empl) => {
+                                        return(
+                                            <MenuItem value={empl.id}>{empl.nume + " " + empl.prenume}</MenuItem>
+                                        )
+                                    })}
+                                </Select>
+                            </FormControl>
+                        </div>
+                    </div>
                 </div>
-            </Container>
-            <Container>
-                <div className={classes.page}>
+
+
+                <div style={{position: "absolute", top: '100px', right: '100px', width: '900px'}}>
                     {workingDays.map((wkDay) => (
                         <WorkingDaysAccordion workingDay={wkDay}/>
                     ))}
                 </div>
-
-            </Container>
 
         </div>
     )

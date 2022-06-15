@@ -18,9 +18,6 @@ const WorkingDaysCard = (personalWorkingDay, selected) => {
                 </CardContent>
             </Card>: <></> }
 
-
-
-
         </div>
     )
 }

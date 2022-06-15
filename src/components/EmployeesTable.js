@@ -126,8 +126,10 @@ const EmployeesTable = ({employee}) => {
                 }}
                 {...employee}
 
-                // disableSelectionOnClick
             />
+
+            
+
             <div>
                 <Button onClick={() => setDialog(true)}>Create a new employee account</Button>
             </div>
