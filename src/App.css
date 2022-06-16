@@ -176,3 +176,7 @@ form.sign-up-form {
   margin-top: 25px;
   margin-left: 25px;
 }
+
+.recharts-wrapper{
+  height: 300px;
+}

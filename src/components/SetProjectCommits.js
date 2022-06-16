@@ -26,7 +26,10 @@ const SetProjectCommits = () => {
     }
 
     return (
-        <div>
+        <div style={{
+            marginLeft: '130px',
+            marginTop: '10px',
+        }}>
             <form noValidate autoComplete="off" onSubmit={handleSubmit}>
 
                 <TextField onChange={handleChangeDetails}
@@ -41,6 +44,7 @@ const SetProjectCommits = () => {
                 />
 
                 <Button
+                    style={{marginTop: '10px'}}
                     type="submit"
                     color="secondary"
                     variant="contained"

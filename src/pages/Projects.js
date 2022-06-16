@@ -24,15 +24,15 @@ const Projects = () => {
     const navigate = useNavigate();
     const classes = useStyles();
 
-    const avatarStyle = {backgroundColor: '#1bbd7e'}
-    const btnstyle = {margin: '8px 0', backgroundColor: '#1bbd7e'}
+    const avatarStyle = {backgroundColor: '#1bbd7e'};
+    const btnstyle = {margin: '8px 0', backgroundColor: '#1bbd7e', width: '50%', left: '25%'};
     const txtFields = {marginBottom: '7px'}
 
 
     const [user, setUser] = useState({});
     const [projects, setProjects] = useState([]);
 
-    const [title, setTitle] = useState("");
+
     const [locationOfTheProject, setLocationOfTheProject] = useState("");
     const [description, setDescription] = useState("");
     const [numberOfResources, setNumberOfResources] = useState(0);
@@ -40,7 +40,7 @@ const Projects = () => {
 
     useEffect(() => {
         axios.get("/api/admin/getProjects").then((res) => setProjects(res.data));
-        console.log(projects)
+
         const loggedInUser = localStorage.getItem("USER");
         if (loggedInUser) {
             const foundUser = JSON.parse(loggedInUser);
@@ -69,6 +69,7 @@ const Projects = () => {
 
     }
 
+    const [title, setTitle] = useState("");
     const handleTitleChange = (e) => {
         setTitle(e.target.value);
     }
@@ -90,10 +91,19 @@ const Projects = () => {
                 <div className={classes.page}>
 
                     {addNewProject ? <div>
-                            <div>
+                            <div
+                                style={{
+                                    marginTop: '30px',
+
+                                }}
+                            >
                                 <Grid>
                                     <Paper elevation={10} justify="center" className={classes.paperStyle}>
-                                        <Grid align='center'>
+                                        <Grid align='center'
+                                            style={{
+                                                marginTop: '20px'
+                                            }}
+                                        >
                                             <Avatar style={avatarStyle}><AddBoxIcon/></Avatar>
                                             <h2>New project</h2>
                                         </Grid>
@@ -123,7 +133,7 @@ const Projects = () => {
                         <div>
                             <Button onClick={() => setAddNewProject(true)}> Add new project </Button>
                             <Grid container spacing={3}>
-                                {projects.map((project) => (
+                                {projects?.map((project) => (
                                     <Grid item key={project.id} xs={12} md={6} lg={4}>
                                         <ProjectsCard project={project}/>
                                     </Grid>

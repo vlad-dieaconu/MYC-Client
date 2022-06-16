@@ -36,8 +36,6 @@ const RegisterEmployeeDialog = (dialog) => {
                 setDialog(false);
                 window.location.reload();
             }, 4000);
-
-
         }).catch(error => {
             console.log('response: ', error.response.data);
             setRegisterMessage(error.response.data.message)
@@ -48,8 +46,6 @@ const RegisterEmployeeDialog = (dialog) => {
                 window.location.reload();
             }, 4000);
         });
-
-
     }
 
     function handleUsernameChange(event) {

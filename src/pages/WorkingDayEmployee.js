@@ -18,7 +18,6 @@ import MenuItem from "@mui/material/MenuItem";
 import moment from "moment";
 
 
-
 const WorkingDayEmployee = () => {
 
     const navigate = useNavigate();
@@ -81,72 +80,119 @@ const WorkingDayEmployee = () => {
         <div>
             <NavbarEmployee/>
             {dataIsSet ?
-                <div>
+                <div
+                    style={{
+                            width: '300px',
+                            marginTop: '100px',
+                            marginRight: '40px',
+                            marginLeft: '30px',
+                            fontWeight: 'bold',
+                            fontSize: '15px',
+                    }}
+                    >
+                    Select a specific date for working day details:
 
-                    <FormControl fullWidth
-                                 style={{marginTop: "60px"}}>
+                        < FormControl fullWidth
+                        style={{marginTop: "20px"}}>
                         <InputLabel id="demo-simple-select-label">WorkingDay</InputLabel>
                         <Select
 
-                            labelId="demo-simple-select-label"
-                            id="demo-simple-select"
-                            label="WorkingDay"
-                            onChange={handleChangeSelect}
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        label="WorkingDay"
+                        onChange={handleChangeSelect}
                         >
-                            {personalWorkingDays.map((persWkDay) => {
-                                return (
-                                    <MenuItem key={persWkDay.id} value={persWkDay.id}>{persWkDay.date.split("T")[0]}</MenuItem>
-                                )
-                            })}
+                    {personalWorkingDays.map((persWkDay) => {
+                        return (
+                        <MenuItem key={persWkDay.id} value={persWkDay.id}>{persWkDay.date.split("T")[0]}</MenuItem>
+                        )
+                    })}
 
                         </Select>
-                    </FormControl>
-                    { selected ? <WorkingDaysCard personalWorkingDay={onePersonalWorkingDay} selected={selected} /> : <></>}
-                </div> : <></>}
+                        </FormControl>
+                    {selected ? <WorkingDaysCard personalWorkingDay={onePersonalWorkingDay} selected={selected} /> : <></>}
+                        </div> : <></>}
 
 
+                <Container>
+                    <div
+                        style={{
+                            position: 'absolute',
+                            top: '35%',
+                            left: '50%',
+                            transform: 'translate(-50%, -50%)',
+                            width: '50%',
+                        }}
+                    >
+                    <h1
+                        style={{
+                            marginBottom: '20px',
+                        }}
+                    > Set your details </h1>
+                    <div
+                        style={{
+                            width: '100%',
+                            marginBottom: '20px',
+                            fontWeight: "bold",
+                        }}
+                    >
+                        On date:
+                        <div>
+                        <SingleDatePicker
+                            style={{marginBottom: "20px", marginLeft: '10px'}}
+                            date={date} // momentPropTypes.momentObj or null
+                            onDateChange={(date) => setDate(date)} // PropTypes.func.isRequired
+                            focused={focus} // PropTypes.bool
+                            onFocusChange={({focused}) => setFocus(focused)} // PropTypes.func.isRequired
+                            numberOfMonths={1}
+                            displayFormat="DD-MM-YYYY"
+                            showClearDate={true}
+                            maxDate={moment().toDate()}
+                            isOutsideRange={() => false}
+                        />
+                        </div>
+                    </div>
+                    <div
+                        style={{
+                            marginTop: '30px',
+                            right: '53%',
+                        }}
+                    >
+                    <form noValidate autoComplete="off" onSubmit={handleSubmit}
+                        style={{
+                            padding: '0px'
+                        }}
+                    >
+
+                        <TextField onChange={handleChangeDetails}
+                                   label="Details"
+                                   variant="outlined"
+                                   color="secondary"
+                                   multiline
+                                   rows={4}
+                                   fullWidth
+                                   required
+                            // error={detailsError}
+                        />
+
+                        <Button
+                            style={{
+                                marginTop: '20px',
+                                right: '42%',
+                            }}
+                            type="submit"
+                            color="secondary"
+                            variant="contained"
+                            endIcon={<KeyboardArrowRightIcon/>}>
+                            Submit
+                        </Button>
+                    </form>
+                    </div>
+                    </div>
+                </Container>
 
 
-            <Container>
-                <h1> Set your details </h1>
-                <div>
-                    <SingleDatePicker
-                        style={{marginBottom:"20px"}}
-                        date={date} // momentPropTypes.momentObj or null
-                        onDateChange={(date) => setDate(date)} // PropTypes.func.isRequired
-                        focused={focus} // PropTypes.bool
-                        onFocusChange={({focused}) => setFocus(focused)} // PropTypes.func.isRequired
-                        numberOfMonths={1}
-                        displayFormat="DD-MM-YYYY"
-                        showClearDate={true}
-                        maxDate={moment().toDate()}
-                        isOutsideRange={() => false}
-                    />
                 </div>
-            <form noValidate autoComplete="off" onSubmit={handleSubmit}>
-
-                <TextField onChange={handleChangeDetails}
-                           label="Details"
-                           variant="outlined"
-                           color="secondary"
-                           multiline
-                           rows={4}
-                           fullWidth
-                           required
-                    // error={detailsError}
-                />
-
-                <Button
-                    type="submit"
-                    color="secondary"
-                    variant="contained"
-                    endIcon={<KeyboardArrowRightIcon/>}>
-                    Submit
-                </Button>
-            </form> </Container>
-
-
-        </div>
-    )
-}
-export default WorkingDayEmployee;
+                )
+            }
+            export default WorkingDayEmployee;
