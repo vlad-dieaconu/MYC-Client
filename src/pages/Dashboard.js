@@ -245,7 +245,7 @@ const Dashboard = () => {
 
 
 
-                </div> : <NavbarEmployee/>
+                </div> : navigate("/clockingWorkingDay")
             }
         </div>
 

@@ -3,13 +3,14 @@ import {Card, CardContent, CardHeader, IconButton, Paper, Typography} from "@mui
 import NavbarAdmin from "../components/NavbarAdmin";
 import EditIcon from "@mui/icons-material/Edit";
 import axios from "axios";
-import {useNavigate} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import CheckIcon from '@mui/icons-material/Check';
 import NavbarEmployee from "../components/NavbarEmployee";
 
 const Profile = () => {
 
 
+    const {state} = useLocation();
     const navigate = useNavigate();
 
     const [user, setUser] = useState({});
@@ -22,6 +23,8 @@ const Profile = () => {
     const [prenume, setPrenume] = useState();
     const [cnp, setCnp] = useState();
 
+    const [admin, setAdmin] = useState(false);
+
     const local = localStorage.getItem("USER");
 
     useEffect(() => {
@@ -33,6 +36,15 @@ const Profile = () => {
         })
             .then(res => setProfileData(res.data));
         const loggedInUser = localStorage.getItem("USER");
+        console.log(loggedInUser);
+        //{"id":2,"email":"admin@myc.com","roles":["ROLE_ADMIN"]}
+        //get roles from loggedInUser
+        const role = JSON.parse(loggedInUser).roles[0];
+        console.log(role)
+        if(role === "ROLE_ADMIN"){
+            setAdmin(true);
+        }
+
         if (loggedInUser) {
             const foundUser = JSON.parse(loggedInUser);
             setUser(foundUser);
@@ -40,7 +52,7 @@ const Profile = () => {
             navigate("/home");
         }
         console.log(profileData);
-    }, [prenume])
+    }, [])
 
     console.log(user)
     const handleNumeChange = (e) => {
@@ -72,7 +84,7 @@ const Profile = () => {
 
     return (
         <div>
-            <NavbarAdmin></NavbarAdmin>
+            {admin ? <NavbarAdmin></NavbarAdmin> : <NavbarEmployee></NavbarEmployee>}
             <div style={{margin: 200}}>
                 <Paper elevation={24}>
                     <Card>

@@ -1,7 +1,8 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {Button, Stack, Switch} from "@mui/material";
 import {DateRangePicker} from "react-dates";
 import axios from "axios";
+import { Alert } from "reactstrap";
 
 const LeaveRequest = () => {
 
@@ -15,6 +16,9 @@ const LeaveRequest = () => {
     const [endDate, setEndDate] = React.useState();
     const [focusedInput, setFocusedInput] = React.useState();
 
+    const [alert, setAlert] = useState(false);
+    const [alertContent, setAlertContent] = useState("");
+
 
 
     const handleSubmitRequest = () => {
@@ -26,6 +30,8 @@ const LeaveRequest = () => {
 
         }).then(res => {
             console.log(res.data);
+            setAlert(true);
+            setAlertContent("Leave request sent successfully");
         }).catch(err => {
             console.log(err.response.data);
         })
@@ -176,7 +182,7 @@ const LeaveRequest = () => {
                         }
                     }
                     onClick={handleSubmitRequest}>Make the request</Button>
-
+                    {alert && <Alert color="success">{alertContent}</Alert>}
             </Stack>
         </div>
     );
