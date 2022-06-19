@@ -77,6 +77,14 @@ const ProjectDialog = ({dialog, proj}) => {
     //
     // console.log(projectCommits);
 
+    console.log(project)
+    console.log(project.id)
+
+    const handleDelete = () => {
+        axios.delete("/api/admin/deleteProject?id=" + project.id)
+        window.location.reload(false);
+    }
+
     return (
         <ThemeProvider theme={theme}>
         <div>
@@ -178,6 +186,8 @@ const ProjectDialog = ({dialog, proj}) => {
 
                 </DialogContent>
                 <DialogActions>
+
+                    <Button onClick={handleDelete} style={{color: "red", background: "white"}}>Delete project</Button>
 
                     <Button onClick={handleClose}>Cancel</Button>
 

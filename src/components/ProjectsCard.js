@@ -39,11 +39,6 @@ const ProjectsCard = ({project}) => {
         setDescriere(e.target.value);
     }
 
-    const handleDelete = () => {
-        axios.delete("/api/admin/deleteProject?id=" + projectId)
-        setEditable(true);
-        window.location.reload(false);
-    }
 
 
     const handleShowModal = () => {
@@ -80,9 +75,6 @@ const ProjectsCard = ({project}) => {
                                 <div>
                                     <IconButton onClick={handleSave}>
                                         <SaveIcon/>
-                                    </IconButton>
-                                    <IconButton onClick={handleDelete}>
-                                        <DeleteIcon/>
                                     </IconButton>
                                 </div>
                             </div>
