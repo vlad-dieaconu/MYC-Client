@@ -108,7 +108,8 @@ const WorkingDays = () => {
                                     label="Employee"
                                     onChange={handleChangeSelect}
                                 >
-                                    {employee.map((empl) => {
+                                    {employee.map((empl, index) => {
+                                        if(index !== 0)
                                         return(
                                             <MenuItem value={empl.id}>{empl.nume + " " + empl.prenume}</MenuItem>
                                         )

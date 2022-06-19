@@ -37,7 +37,7 @@ const EmployeesTable = ({employee}) => {
         {
             field: 'email',
             headerName: 'Email',
-            width: 150,
+            width: 180,
         },
         {
             field: 'username',
@@ -79,16 +79,19 @@ const EmployeesTable = ({employee}) => {
     }, []);
 
 
-    employee.map((e) => {
+    //start a map on employee array avoiding first element
+    employee.map((employee, index) => {
         let row = {};
-        row.id = e.id;
-        row.nume = e.nume;
-        row.prenume = e.prenume;
-        row.cnp = e.cnp;
-        row.email = e.email;
-        row.username = e.username;
-        rows.push(row);
-    })
+        if (index !== 0) {
+            row.id = employee.id;
+            row.nume = employee.nume;
+            row.prenume = employee.prenume;
+            row.cnp = employee.cnp;
+            row.email = employee.email;
+            row.username = employee.username;
+            rows.push(row);
+        }
+    });
 
 
     const handleChangeSelect = (event) => {
