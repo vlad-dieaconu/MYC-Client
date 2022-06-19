@@ -71,7 +71,10 @@ const WorkingDayEmployee = () => {
     const handleChangeSelect = (event) => {
         console.log(personalWorkingDays);
         setSelected(true);
-        setOnePersonalWorkingDay(personalWorkingDays[event.target.value - 1]);
+        console.log(event.target.value);
+
+        setOnePersonalWorkingDay(personalWorkingDays[event.target.value]);
+
     }
 
     //console.log(personalWorkingDays)
@@ -102,9 +105,11 @@ const WorkingDayEmployee = () => {
                         label="WorkingDay"
                         onChange={handleChangeSelect}
                         >
-                    {personalWorkingDays.map((persWkDay) => {
+                    {personalWorkingDays.reverse().map((persWkDay) => {
+                            //get the index of persWkDay
+                            const index = personalWorkingDays.indexOf(persWkDay);
                         return (
-                        <MenuItem key={persWkDay.id} value={persWkDay.id}>{persWkDay.date.split("T")[0]}</MenuItem>
+                        <MenuItem key={persWkDay.id} value={index}>{persWkDay.date.split("T")[0]}</MenuItem>
                         )
                     })}
 
